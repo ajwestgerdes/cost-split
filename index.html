@@ -1,97 +1,42 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Input Form</title>
-    <style>
-        form {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 10px;
-        }
-        label {
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        input[type="text"], input[type="number"] {
-            padding: 5px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            flex: 1;
-        }
-        button[type="submit"] {
-            padding: 5px 10px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .row {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .row label {
-            margin-right: 10px;
-            font-weight: bold;
-        }
-        .row input[type="text"],.row input[type="number"] {
-            padding: 5px;
-            margin-right: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            flex: 1;
-        }
-    </style>
-</head>
-<body>
-    <h1>Input Form</h1>
-    <form>
-        <label for="name-input">Name:</label>
-        <input type="text" id="name-input" name="name-input">
+<form action="/split" method="post">
+   
+    <table id="myTable">
+      
+    </table>
+    <button type="button" onclick="addRow()">Add Row</button>
+    <button type="submit">Submit</button>
+  </form>
+  
+  <script>
+  var i = 0
+  function addRow() {
+    i++
+    var table = document.getElementById("myTable");
 
-        <label for="money-input">Money:</label>
-        <input type="number" id="money-input" name="money-input">
-
-        <button type="submit">Submit</button>
-    </form>
-
-    <div id="rows"></div>
-
-    <button onclick="addRow()">Add Row</button>
-
-    <script>
-        function addRow() {
-            // Get the rows container element
-            var rowsContainer = document.getElementById("rows");
-
-            // Create a new row element
-            var row = document.createElement("div");
-            row.classList.add("row");
-
-            // Create a new name input element
-            var nameInput = document.createElement("input");
-            nameInput.type = "text";
-            nameInput.name = "name-input";
-
-            // Create a new money input element
-            var moneyInput = document.createElement("input");
-            moneyInput.type = "number";
-            moneyInput.name = "money-input";
-
-            // Add the input elements to the row
-            row.appendChild(nameInput);
-            row.appendChild(moneyInput);
-
-            // Add the row to the rows container
-            rowsContainer.appendChild(row);
-        }
-    </script>
-</body>
-</html>
+    var row = table.insertRow();
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+  
+    var input1 = document.createElement("input");
+    input1.type = "text";
+    input1.id = "name" + i;
+    input1.name = "name" + i;
+    var input2 = document.createElement("input");
+    input2.type = "text";
+    input2.id = "moneys" + i;
+    input2.name = "moneys" + i;
+  
+    var label1 = document.createElement("label");
+    label1.for = "name" + i;
+    label1.textContent = "Name: ";
+    var label2 = document.createElement("label");
+    label2.for = "moneys" + i;
+    label2.textContent = "Moneys: ";
+  
+    cell1.appendChild(label1);
+    cell1.appendChild(input1);
+    cell2.appendChild(label2);
+    cell2.appendChild(input2);
+    
+  }
+  </script>
