@@ -1,10 +1,27 @@
-<form action="/split" method="post">
+<form action="/" method="post">
    
     <table id="myTable">
       
     </table>
     <button type="button" onclick="addRow()">Add Row</button>
     <button type="submit">Submit</button>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Payments</th>
+            </tr>
+            {% for key, value in costs.items() %}
+            <tr>               
+                <th>{{key}}</th>
+                <th>${{value}}</th>      
+            </tr>
+            {% endfor %}
+        </table> 
+      <ul>
+          {% for item in data %}
+              <li>{{ item[0] }} owes {{ item[1] }} ${{item[2]}}</li>
+          {% endfor %}
+      </ul>
   </form>
   
   <script>
@@ -25,6 +42,8 @@
     input2.type = "text";
     input2.id = "moneys" + i;
     input2.name = "moneys" + i;
+    input2.type = 'number';
+    input2.step = 0.01;
   
     var label1 = document.createElement("label");
     label1.for = "name" + i;
